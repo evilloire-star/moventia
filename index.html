@@ -6,14 +6,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Moventia">
-  <meta name="theme-color" content="#FAF9F7">
+  <meta name="theme-color" content="#121214">
   <meta name="description" content="Moventia — Movement Training System by HOYHON">
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon-192.png"
+  <link rel="apple-touch-icon" href="icon-192.png">
   <title>Moventia — Movement Training System</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    body { background:#FAF9F7; font-family:'SF Pro Display','-apple-system','Helvetica Neue',system-ui,sans-serif; overflow-x:hidden; }
+    body { background:#121214; font-family:'Inter','SF Pro Display','-apple-system','Helvetica Neue',system-ui,sans-serif; overflow-x:hidden; color:#E8E6E3; }
     #root { min-height:100vh; }
     /* hide scrollbar on sub-navs */
     ::-webkit-scrollbar { display:none; }
@@ -23,17 +23,24 @@
     }
     /* PWA install banner */
     #pwa-banner { display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999;
-      background:linear-gradient(135deg,#B87E6A 0%,#CA9882 100%); color:#fff;
+      background:linear-gradient(135deg,#1E1E22 0%,#26262B 100%); color:#E8E6E3;
       padding:14px 16px; text-align:center; font-size:13px; font-weight:600;
-      box-shadow:0 -2px 12px rgba(0,0,0,0.15); }
-    #pwa-banner button { background:#fff; color:#B87E6A; border:none; padding:8px 18px;
+      box-shadow:0 -2px 12px rgba(0,0,0,0.40); border-top:1px solid rgba(255,255,255,0.08); }
+    #pwa-banner button { background:#CFA378; color:#121214; border:none; padding:8px 18px;
       border-radius:8px; font-weight:700; font-size:12px; margin-left:12px; cursor:pointer; }
   </style>
+
+  <!-- Inter font (premium) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- React 18 + ReactDOM -->
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-  <!-- PropTypes (required by Recharts UMD) -->  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+  <!-- PropTypes (required by Recharts UMD) -->
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+  <!-- Recharts -->
   <script crossorigin src="https://unpkg.com/recharts@2.15.3/umd/Recharts.js"></script>
   <!-- Babel standalone for JSX -->
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.9/babel.min.js"></script>
@@ -43,7 +50,7 @@
 
   <!-- PWA install banner for iOS -->
   <div id="pwa-banner">
-    📲 เพิ่ม Moventia ที่หน้าจอ iPhone → กดปุ่ม <b>Share ⬆</b> แล้วเลือก <b>"Add to Home Screen"</b>
+    ◈ เพิ่ม Moventia ที่หน้าจอ iPhone → กดปุ่ม <b>Share ⬆</b> แล้วเลือก <b>"Add to Home Screen"</b>
     <button onclick="document.getElementById('pwa-banner').style.display='none';localStorage.setItem('pwa_dismissed','1')">OK</button>
   </div>
 
@@ -123,73 +130,73 @@ function L(path) {
    DESIGN TOKENS — Healthy Luxury · Light Theme
 ═══════════════════════════════════════════════════════ */
 const T = {
-  bg:          "#FAF9F7",
-  bg2:         "#F0EBE4",
-  surface:     "#FFFFFF",
-  surfaceHi:   "#F8F4EF",
-  border:      "rgba(0,0,0,0.07)",
-  borderMd:    "rgba(0,0,0,0.13)",
-  borderGold:  "rgba(184,126,106,0.35)",
-  borderBlue:  "rgba(108,132,188,0.35)",
-  borderGreen: "rgba(100,160,122,0.35)",
-  text:        "#1E1A17",
-  sub:         "#6A6460",
-  muted:       "#ABA7A3",
-  faint:       "rgba(0,0,0,0.028)",
-  gold:        "#B87E6A",
-  goldBright:  "#CA9882",
-  goldGlow:    "rgba(184,126,106,0.20)",
-  goldFaint:   "rgba(184,126,106,0.08)",
-  blue:        "#6C84BC",
-  blueFaint:   "rgba(108,132,188,0.08)",
-  green:       "#64A07A",
-  greenFaint:  "rgba(100,160,122,0.08)",
-  greenGlow:   "rgba(100,160,122,0.16)",
-  purple:      "#9B72CF",
-  purpleFaint: "rgba(155,114,207,0.08)",
-  borderPurple:"rgba(155,114,207,0.35)",
-  purpleGlow:  "rgba(155,114,207,0.20)",
+  bg:          "#121214",
+  bg2:         "#1A1A1E",
+  surface:     "#1E1E22",
+  surfaceHi:   "#26262B",
+  border:      "rgba(255,255,255,0.08)",
+  borderMd:    "rgba(255,255,255,0.14)",
+  borderGold:  "rgba(207,163,120,0.30)",
+  borderBlue:  "rgba(130,155,210,0.30)",
+  borderGreen: "rgba(120,180,140,0.30)",
+  text:        "#E8E6E3",
+  sub:         "#9A9896",
+  muted:       "#636160",
+  faint:       "rgba(255,255,255,0.035)",
+  gold:        "#CFA378",
+  goldBright:  "#DFBA94",
+  goldGlow:    "rgba(207,163,120,0.22)",
+  goldFaint:   "rgba(207,163,120,0.10)",
+  blue:        "#829BD2",
+  blueFaint:   "rgba(130,155,210,0.10)",
+  green:       "#78B48C",
+  greenFaint:  "rgba(120,180,140,0.10)",
+  greenGlow:   "rgba(120,180,140,0.18)",
+  purple:      "#B08AE0",
+  purpleFaint: "rgba(176,138,224,0.10)",
+  borderPurple:"rgba(176,138,224,0.30)",
+  purpleGlow:  "rgba(176,138,224,0.22)",
   // Hoop — Rose
-  rose:        "#D4728C",
-  roseFaint:   "rgba(212,114,140,0.08)",
-  borderRose:  "rgba(212,114,140,0.35)",
-  roseGlow:    "rgba(212,114,140,0.20)",
+  rose:        "#E08BA0",
+  roseFaint:   "rgba(224,139,160,0.10)",
+  borderRose:  "rgba(224,139,160,0.30)",
+  roseGlow:    "rgba(224,139,160,0.22)",
   // Silk — Crimson
-  crimson:     "#C65D5A",
-  crimsonFaint:"rgba(198,93,90,0.08)",
-  borderCrimson:"rgba(198,93,90,0.35)",
-  crimsonGlow: "rgba(198,93,90,0.20)",
+  crimson:     "#D47472",
+  crimsonFaint:"rgba(212,116,114,0.10)",
+  borderCrimson:"rgba(212,116,114,0.30)",
+  crimsonGlow: "rgba(212,116,114,0.22)",
   // Hammock — Teal
-  teal:        "#4DA89E",
-  tealFaint:   "rgba(77,168,158,0.08)",
-  borderTeal:  "rgba(77,168,158,0.35)",
-  tealGlow:    "rgba(77,168,158,0.20)",
+  teal:        "#5DBDB3",
+  tealFaint:   "rgba(93,189,179,0.10)",
+  borderTeal:  "rgba(93,189,179,0.30)",
+  tealGlow:    "rgba(93,189,179,0.22)",
   // Rope — Amber
-  amber:       "#C4863B",
-  amberFaint:  "rgba(196,134,59,0.08)",
-  borderAmber: "rgba(196,134,59,0.35)",
-  amberGlow:   "rgba(196,134,59,0.20)",
+  amber:       "#D49E5A",
+  amberFaint:  "rgba(212,158,90,0.10)",
+  borderAmber: "rgba(212,158,90,0.30)",
+  amberGlow:   "rgba(212,158,90,0.22)",
   // Strength — Steel
-  steel:       "#5A7DB0",
-  steelFaint:  "rgba(90,125,176,0.08)",
-  borderSteel: "rgba(90,125,176,0.35)",
-  steelGlow:   "rgba(90,125,176,0.20)",
+  steel:       "#7094CC",
+  steelFaint:  "rgba(112,148,204,0.10)",
+  borderSteel: "rgba(112,148,204,0.30)",
+  steelGlow:   "rgba(112,148,204,0.22)",
   // Stretch — Sage
-  sage:        "#7BA67E",
-  sageFaint:   "rgba(123,166,126,0.08)",
-  borderSage:  "rgba(123,166,126,0.35)",
-  sageGlow:    "rgba(123,166,126,0.20)",
+  sage:        "#8DBA90",
+  sageFaint:   "rgba(141,186,144,0.10)",
+  borderSage:  "rgba(141,186,144,0.30)",
+  sageGlow:    "rgba(141,186,144,0.22)",
   // Pole — Indigo
-  indigo:      "#7B61C4",
-  indigoFaint: "rgba(123,97,196,0.08)",
-  borderIndigo:"rgba(123,97,196,0.35)",
-  indigoGlow:  "rgba(123,97,196,0.20)",
-  silver:      "#8A8A8A",
-  locked:      "#ECEAE6",
-  lockedTxt:   "#C2BDB8",
-  metal:       "linear-gradient(135deg,#7A4E38 0%,#C4886C 45%,#EABFA8 60%,#9B6654 100%)",
-  divider:     "rgba(0,0,0,0.05)",
-  cardShadow:  "0 1px 8px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.04)",
+  indigo:      "#9078D6",
+  indigoFaint: "rgba(144,120,214,0.10)",
+  borderIndigo:"rgba(144,120,214,0.30)",
+  indigoGlow:  "rgba(144,120,214,0.22)",
+  silver:      "#7A7A7A",
+  locked:      "#2A2A2E",
+  lockedTxt:   "#4A4A4E",
+  metal:       "linear-gradient(135deg,#CFA378 0%,#E8C9A0 45%,#F0DBC0 60%,#B08A60 100%)",
+  divider:     "rgba(255,255,255,0.06)",
+  cardShadow:  "0 1px 8px rgba(0,0,0,0.30), 0 0 1px rgba(0,0,0,0.20)",
 };
 
 /* ═══════════════════════════════════════════════════════
@@ -209,7 +216,7 @@ const STATS = [
 ═══════════════════════════════════════════════════════ */
 const BASIC_GROUPS = [
   {
-    id:"fit", icon:"💪", name:"FITNESS", thai:"ความแข็งแรงพื้นฐาน", passScore:6,
+    id:"fit", icon:"◆", name:"FITNESS", thai:"ความแข็งแรงพื้นฐาน", passScore:6,
     color:T.blue, faintColor:T.blueFaint, borderColor:T.borderBlue,
     note:"ทักษะความแข็งแรงและความอดทนที่ทุกคนควรมี — ประเมินก่อนเริ่มโปรแกรม Handstand",
     skills:[
@@ -221,7 +228,7 @@ const BASIC_GROUPS = [
     ],
   },
   {
-    id:"str_mob", icon:"🌿", name:"STRETCH & MOBILITY", thai:"ความยืดหยุ่นและข้อต่อ", passScore:6,
+    id:"str_mob", icon:"≋", name:"STRETCH & MOBILITY", thai:"ความยืดหยุ่นและข้อต่อ", passScore:6,
     color:T.green, faintColor:T.greenFaint, borderColor:T.borderGreen,
     note:"ยืดกล้ามเนื้อและข้อต่อที่จำเป็นสำหรับทุกคน — ฝึกสม่ำเสมอลดการบาดเจ็บ",
     skills:[
@@ -868,7 +875,7 @@ function getDecayInfo(skillData) {
   if (!score || !lastTested) return null;
   const days = daysSince(lastTested);
   if (days <= 30) return { status:"fresh", badge:null };
-  if (days <= 60) return { status:"check", badge:"🕒", daysLeft: 60 - days };
+  if (days <= 60) return { status:"check", badge:"◔", daysLeft: 60 - days };
   const monthsDecay = Math.floor((days - 60) / 30);
   return { status:"fading", badge:"⚠", days, monthsDecay, effective: Math.max(0, score - monthsDecay) };
 }
@@ -1178,7 +1185,7 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
                       {score}/10{passed?" ✓":""}
                     </span>
                     {(skillData?.photos?.length > 0) && (
-                      <span style={{ fontSize:9, color:T.muted }}>📷{skillData.photos.length}</span>
+                      <span style={{ fontSize:9, color:T.muted }}>▫{skillData.photos.length}</span>
                     )}
                   </div>
                 )}
@@ -1189,10 +1196,10 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
                     border:`1px solid ${passed?"rgba(100,160,122,0.18)":T.border}` }}>
                     <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:3 }}>
                       <span style={{ fontSize:9, fontWeight:700, color:passed?T.green:T.sub }}>
-                        📋 ประวัติล่าสุด
+                        ▣ ประวัติล่าสุด
                       </span>
                       <span style={{ fontSize:8, color:T.muted }}>
-                        📅 {skillData.lastTested} ({daysSince(skillData.lastTested)} วันที่แล้ว)
+                        ▣ {skillData.lastTested} ({daysSince(skillData.lastTested)} วันที่แล้ว)
                       </span>
                     </div>
                     <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
@@ -1280,7 +1287,7 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
               ? <div style={{ fontSize:13, fontWeight:700, color:passed?accentColor:scored?T.sub:T.lockedTxt }}>
                   {scored?`${score}/10`:"—"}
                 </div>
-              : <div style={{ fontSize:11, color:T.lockedTxt }}>🔒</div>
+              : <div style={{ fontSize:11, color:T.lockedTxt }}>▪</div>
           }
         </div>
       </div>
@@ -1299,7 +1306,7 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
               <div style={{ marginBottom:12, padding:"8px 10px", borderRadius:7,
                 background:"rgba(155,114,207,0.06)", border:"1px solid rgba(155,114,207,0.18)" }}>
                 <div style={{ fontSize:7, color:"#9B72CF", letterSpacing:"0.12em", fontWeight:700, marginBottom:4 }}>
-                  📋 ครั้งก่อน
+                  ▣ ครั้งก่อน
                 </div>
                 <div style={{ display:"flex", gap:8, flexWrap:"wrap", fontSize:10, color:"#8B62BF", fontWeight:600 }}>
                   {pd.sets && <span>Sets: {pd.sets}</span>}
@@ -1363,7 +1370,7 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
               </div>
             )}
             <div style={{ fontSize:8, color:T.muted, marginTop:6, fontStyle:"italic" }}>
-              ขั้นต่ำ — ทำได้มากกว่านี้ยิ่งดี 💪
+              ขั้นต่ำ — ทำได้มากกว่านี้ยิ่งดี ◆
             </div>
           </div>
 
@@ -1465,7 +1472,7 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
           {/* PHOTO EVIDENCE */}
           <div style={{ marginBottom:12 }}>
             <div style={{ fontSize:8, color:T.muted, letterSpacing:"0.10em", marginBottom:8, fontWeight:700 }}>
-              📷  PHOTO EVIDENCE
+              ▫  PHOTO EVIDENCE
             </div>
             {draft.photos.length > 0 && (
               <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:8 }}>
@@ -1498,7 +1505,7 @@ function SkillRow({ skill, skillData, unlocked, coachMode, onScore, passScore, a
                   e.target.value = "";
                 }}/>
               <span style={{ fontSize:11, color:T.muted }}>
-                📷  แนบรูปหลักฐาน
+                ▫  แนบรูปหลักฐาน
               </span>
               <span style={{ fontSize:9, color:T.muted, marginLeft:"auto" }}>
                 {draft.photos.length > 0 ? `${draft.photos.length} รูป` : "กล้อง / อัลบั้ม"}
@@ -1752,28 +1759,28 @@ function HSLevelCard({ level, scores, unlockedLevels, clearedLevels, coachMode, 
 ═══════════════════════════════════════════════════════ */
 /* ── Track config for UI rendering ── */
 const TRACK_CONFIG = [
-  { key:"hs",   label:"HANDSTAND",  icon:"🤸", levels:HS_LEVELS,      color:T.gold,    faint:T.goldFaint,    border:T.borderGold,    glow:T.goldGlow },
-  { key:"pl",   label:"POLE",       icon:"💃", levels:POLE_LEVELS,    color:T.indigo,  faint:T.indigoFaint,  border:T.borderIndigo,  glow:T.indigoGlow },
-  { key:"as",   label:"STRAPS",     icon:"🎪", levels:AS_LEVELS,      color:T.purple,  faint:T.purpleFaint,  border:T.borderPurple,  glow:T.purpleGlow },
-  { key:"hp",   label:"HOOP",       icon:"⭕", levels:HOOP_LEVELS,    color:T.rose,    faint:T.roseFaint,    border:T.borderRose,    glow:T.roseGlow },
-  { key:"sk",   label:"SILK",       icon:"🎗", levels:SILK_LEVELS,    color:T.crimson, faint:T.crimsonFaint, border:T.borderCrimson, glow:T.crimsonGlow },
-  { key:"hm",   label:"HAMMOCK",    icon:"🛋", levels:HAMMOCK_LEVELS, color:T.teal,    faint:T.tealFaint,    border:T.borderTeal,    glow:T.tealGlow },
-  { key:"rp",   label:"ROPE",       icon:"🧵", levels:ROPE_LEVELS,    color:T.amber,   faint:T.amberFaint,   border:T.borderAmber,   glow:T.amberGlow },
-  { key:"st",   label:"STRENGTH",   icon:"🏋", levels:STR_LEVELS,     color:T.steel,   faint:T.steelFaint,   border:T.borderSteel,   glow:T.steelGlow },
-  { key:"fx",   label:"STRETCH",    icon:"🌿", levels:FLEX_LEVELS,    color:T.sage,    faint:T.sageFaint,    border:T.borderSage,    glow:T.sageGlow },
+  { key:"hs",   label:"HANDSTAND",  icon:"▲", levels:HS_LEVELS,      color:T.gold,    faint:T.goldFaint,    border:T.borderGold,    glow:T.goldGlow },
+  { key:"pl",   label:"POLE",       icon:"│", levels:POLE_LEVELS,    color:T.indigo,  faint:T.indigoFaint,  border:T.borderIndigo,  glow:T.indigoGlow },
+  { key:"as",   label:"STRAPS",     icon:"║", levels:AS_LEVELS,      color:T.purple,  faint:T.purpleFaint,  border:T.borderPurple,  glow:T.purpleGlow },
+  { key:"hp",   label:"HOOP",       icon:"○", levels:HOOP_LEVELS,    color:T.rose,    faint:T.roseFaint,    border:T.borderRose,    glow:T.roseGlow },
+  { key:"sk",   label:"SILK",       icon:"∿", levels:SILK_LEVELS,    color:T.crimson, faint:T.crimsonFaint, border:T.borderCrimson, glow:T.crimsonGlow },
+  { key:"hm",   label:"HAMMOCK",    icon:"⌓", levels:HAMMOCK_LEVELS, color:T.teal,    faint:T.tealFaint,    border:T.borderTeal,    glow:T.tealGlow },
+  { key:"rp",   label:"ROPE",       icon:"⧸", levels:ROPE_LEVELS,    color:T.amber,   faint:T.amberFaint,   border:T.borderAmber,   glow:T.amberGlow },
+  { key:"st",   label:"STRENGTH",   icon:"◆", levels:STR_LEVELS,     color:T.steel,   faint:T.steelFaint,   border:T.borderSteel,   glow:T.steelGlow },
+  { key:"fx",   label:"STRETCH",    icon:"≋", levels:FLEX_LEVELS,    color:T.sage,    faint:T.sageFaint,    border:T.borderSage,    glow:T.sageGlow },
 ];
 
 /* ── Category groups for sub-nav ── */
 const CATEGORIES = [
-  { id:"basic",    label:"BASIC",       icon:"💪", color:T.blue,   faint:T.blueFaint,   border:T.borderBlue,
+  { id:"basic",    label:"BASIC",       icon:"◇", color:T.blue,   faint:T.blueFaint,   border:T.borderBlue,
     desc:"ทักษะพื้นฐาน + ความแข็งแรง + ความยืดหยุ่น",
     tracks:["st","fx"], // Strength & Stretch are level-based tracks inside Basic
   },
-  { id:"floor",    label:"FLOOR / POLE",icon:"🤸", color:T.gold,   faint:T.goldFaint,   border:T.borderGold,
+  { id:"floor",    label:"FLOOR / POLE",icon:"▲", color:T.gold,   faint:T.goldFaint,   border:T.borderGold,
     desc:"Handstand + Pole — ทักษะภาคพื้นและ Pole",
     tracks:["hs","pl"],
   },
-  { id:"aerial",   label:"AERIAL",      icon:"🎪", color:T.purple, faint:T.purpleFaint, border:T.borderPurple,
+  { id:"aerial",   label:"AERIAL",      icon:"◎", color:T.purple, faint:T.purpleFaint, border:T.borderPurple,
     desc:"Silk, Hoop, Hammock, Rope, Straps — อุปกรณ์ลอยตัว",
     tracks:["sk","hp","hm","rp","as"],
   },
@@ -1826,7 +1833,7 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
               </div>
             ) : (
               <div style={{ fontSize:9, color:T.muted, fontWeight:700, letterSpacing:"0.10em", whiteSpace:"nowrap" }}>
-                🧑 ดูข้อมูล
+                ○ ดูข้อมูล
               </div>
             );
           })()}
@@ -1847,11 +1854,11 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
 
       {/* KPI row */}
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8 }}>
-        <StatCard icon="📅" label="Sessions" value={sessions.filter(s=>s.type!=="group").length} color={T.gold}/>
+        <StatCard icon="▣" label="Sessions" value={sessions.filter(s=>s.type!=="group").length} color={T.gold}/>
 
         <StatCard icon="✓" label="Skills OK" value={`${passed}/${ALL_SKILLS.length}`} color={T.green}/>
-        <StatCard icon="🏆" label="Levels" value={`${totalCleared}/${totalLevels}`} color={T.gold}/>
-        <StatCard icon="💯" label="Mastery" value={`${mastery}%`} color={T.blue}/>
+        <StatCard icon="▲" label="Levels" value={`${totalCleared}/${totalLevels}`} color={T.gold}/>
+        <StatCard icon="◈" label="Mastery" value={`${mastery}%`} color={T.blue}/>
       </div>
 
       {/* Title + current level ring */}
@@ -1882,7 +1889,7 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
 
         // 1. Skills needing retest (decay)
         if (needsRetest.length > 0) {
-          recs.push({ icon:"⚠️", title:`${needsRetest.length} skill ใกล้หมดอายุ / คะแนนลดแล้ว`,
+          recs.push({ icon:"△", title:`${needsRetest.length} skill ใกล้หมดอายุ / คะแนนลดแล้ว`,
             desc:`ควรไปทดสอบซ้ำที่แท็บ COACH เพื่อรีเซ็ต Timer`,
             color:"#DC3545", bg:"rgba(220,53,69,0.06)", border:"rgba(220,53,69,0.18)", priority:1 });
         }
@@ -1890,7 +1897,7 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
         // 2. Current level progress — incomplete skills
         const curLvRemain = curLv.skills.filter(s=>getEffectiveScore(viewScores[s.id])<curLv.passScore);
         if (curLvRemain.length > 0 && curLvRemain.length <= 5) {
-          recs.push({ icon:"🎯", title:`อีก ${curLvRemain.length} skill จะผ่าน Handstand Lv ${curLvId}`,
+          recs.push({ icon:"▸", title:`อีก ${curLvRemain.length} skill จะผ่าน Handstand Lv ${curLvId}`,
             desc: curLvRemain.map(s=>s.name).join(", "),
             color:T.gold, bg:T.goldFaint, border:T.borderGold, priority:2 });
         }
@@ -1918,14 +1925,14 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
           return [...arr, ...u];
         }, []);
         if (unscoredBasic.length > 0) {
-          recs.push({ icon:"💪", title:`${unscoredBasic.length} Basic Skill ยังไม่เคยฝึก`,
+          recs.push({ icon:"◆", title:`${unscoredBasic.length} Basic Skill ยังไม่เคยฝึก`,
             desc: unscoredBasic.slice(0,3).map(s=>s.name).join(", ") + (unscoredBasic.length>3?` +${unscoredBasic.length-3} อื่นๆ`:""),
             color:T.blue, bg:T.blueFaint, border:T.borderBlue, priority:4 });
         }
 
         // 5. If mastery is high, encourage next milestone
         if (mastery >= 70 && mastery < 100) {
-          recs.push({ icon:"🌟", title:`Mastery ${mastery}% — ใกล้ระดับถัดไปแล้ว!`,
+          recs.push({ icon:"◈", title:`Mastery ${mastery}% — ใกล้ระดับถัดไปแล้ว!`,
             desc:"เน้นฝึก skill ที่ยังไม่ผ่าน เพื่อไปให้ถึง 100%",
             color:T.green, bg:T.greenFaint, border:T.borderGreen, priority:5 });
         }
@@ -1936,7 +1943,7 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
           <div style={{ background:T.surface, borderRadius:10, border:`1px solid ${T.border}`,
                         padding:"14px 16px", boxShadow:T.cardShadow }}>
             <div style={{ fontSize:9, color:T.gold, letterSpacing:"0.14em", marginBottom:10, fontWeight:700 }}>
-              🗺️  แนะนำการฝึกต่อไป
+              ▸  แนะนำการฝึกต่อไป
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
               {recs.sort((a,b)=>a.priority-b.priority).slice(0,4).map((r,i) => (
@@ -2003,7 +2010,7 @@ function HomeTab({ scores, sessions, students, selectedStudent, onSelectStudent 
                             <Ring value={pass} max={lv.skills.length}
                               color={c?track.color:u?T.silver:T.lockedTxt} size={42} stroke={4} label={`L${lv.id}`}/>
                             <div style={{ fontSize:7, color:c?track.color:T.muted, marginTop:2, fontWeight:700 }}>
-                              {c?"✓":u?`${pass}/${lv.skills.length}`:"🔒"}
+                              {c?"✓":u?`${pass}/${lv.skills.length}`:"▪"}
                             </div>
                           </div>
                         );
@@ -2150,7 +2157,7 @@ function SkillsTab({ scores, customSkills, headCoachMode, onAddSkill, onDeleteSk
             </div>
           ) : (
             <div style={{ fontSize:9, color:T.muted, fontWeight:700, letterSpacing:"0.10em", whiteSpace:"nowrap" }}>
-              🧑 นักเรียน
+              ○ นักเรียน
             </div>
           )}
           <select value={viewStudent} onChange={e=>onSelectStudent(e.target.value)}
@@ -2252,7 +2259,7 @@ function SkillsTab({ scores, customSkills, headCoachMode, onAddSkill, onDeleteSk
                 <div style={{ padding:"9px 14px", borderRadius:8, marginBottom:12, marginTop:8,
                   background:stTrack.faint, border:`1px solid ${stTrack.border}`,
                   fontSize:11, color:T.sub, lineHeight:1.7 }}>
-                  <b style={{ color:stTrack.color }}>🏋 STRENGTH Levels</b> — ความแข็งแรงขั้นสูง 4 Levels
+                  <b style={{ color:stTrack.color }}>◆ STRENGTH Levels</b> — ความแข็งแรงขั้นสูง 4 Levels
                 </div>
                 {stTrack.levels.map(lv=>(
                   <HSLevelCard key={`st_${lv.id}`} level={lv} scores={viewScores}
@@ -2280,7 +2287,7 @@ function SkillsTab({ scores, customSkills, headCoachMode, onAddSkill, onDeleteSk
                 <div style={{ padding:"9px 14px", borderRadius:8, marginBottom:12, marginTop:8,
                   background:fxTrack.faint, border:`1px solid ${fxTrack.border}`,
                   fontSize:11, color:T.sub, lineHeight:1.7 }}>
-                  <b style={{ color:fxTrack.color }}>🌿 STRETCH Levels</b> — ความยืดหยุ่นขั้นสูง 4 Levels
+                  <b style={{ color:fxTrack.color }}>≋ STRETCH Levels</b> — ความยืดหยุ่นขั้นสูง 4 Levels
                 </div>
                 {fxTrack.levels.map(lv=>(
                   <HSLevelCard key={`fx_${lv.id}`} level={lv} scores={viewScores}
@@ -2669,7 +2676,7 @@ function ProgramManager({ programs, onPrograms, customExercises, onCustomExercis
       <button onClick={()=>setShowPicker(true)} style={{ width:"100%", padding:"11px", borderRadius:7,
         background:T.surface, border:`1.5px dashed ${T.borderGold}`,
         color:T.gold, fontSize:11, cursor:"pointer", marginBottom:10, fontWeight:700 }}>
-        📋  เพิ่ม Exercise จาก Skill Groups
+        ▣  เพิ่ม Exercise จาก Skill Groups
       </button>
 
       {/* Save program */}
@@ -2692,7 +2699,7 @@ function ProgramManager({ programs, onPrograms, customExercises, onCustomExercis
       {programs.length === 0 && (
         <div style={{ background:T.surface, borderRadius:10, border:`1px solid ${T.border}`,
           padding:"28px 20px", textAlign:"center", boxShadow:T.cardShadow, marginBottom:12 }}>
-          <div style={{ fontSize:28, marginBottom:10 }}>📋</div>
+          <div style={{ fontSize:28, marginBottom:10 }}>▣</div>
           <div style={{ fontSize:12, fontWeight:700, color:T.sub, marginBottom:6 }}>ยังไม่มี Program</div>
           <div style={{ fontSize:11, color:T.muted, lineHeight:1.6 }}>
             สร้าง Program สำหรับ Group Class<br/>เช่น "Handstand Beginner", "Core &amp; Flex"
@@ -2759,10 +2766,10 @@ function GroupLogger({ programs, coachName, onCoachNameChange, onSaveGroup }) {
 
   if (programs.length === 0) return (
     <div style={{ padding:32, textAlign:"center" }}>
-      <div style={{ fontSize:32, marginBottom:12 }}>📋</div>
+      <div style={{ fontSize:32, marginBottom:12 }}>▣</div>
       <div style={{ fontSize:13, fontWeight:700, color:T.sub, marginBottom:8 }}>ยังไม่มี Program</div>
       <div style={{ fontSize:11, color:T.muted, lineHeight:1.7 }}>
-        ไปที่โหมด <b style={{ color:T.gold }}>📋 Programs</b> เพื่อสร้าง Program ก่อน
+        ไปที่โหมด <b style={{ color:T.gold }}>▣ Programs</b> เพื่อสร้าง Program ก่อน
       </div>
     </div>
   );
@@ -2773,7 +2780,7 @@ function GroupLogger({ programs, coachName, onCoachNameChange, onSaveGroup }) {
       <div style={{ background:T.surface, borderRadius:10, border:`1px solid ${T.border}`,
                     padding:"14px 16px", boxShadow:T.cardShadow }}>
         <div style={{ fontSize:8, color:T.muted, letterSpacing:"0.12em", marginBottom:6, fontWeight:700 }}>
-          🏅  COACH
+          ◈  COACH
         </div>
         <input value={coachName} onChange={e=>onCoachNameChange(e.target.value)}
           placeholder="ชื่อ Coach"
@@ -2809,7 +2816,7 @@ function GroupLogger({ programs, coachName, onCoachNameChange, onSaveGroup }) {
         <div style={{ background:T.surface, borderRadius:10, border:`1px solid ${T.borderGold}`,
                       padding:"14px 16px", boxShadow:T.cardShadow }}>
           <div style={{ fontSize:8, color:T.gold, letterSpacing:"0.12em", marginBottom:10, fontWeight:700 }}>
-            📋  {prog.name.toUpperCase()} — EXERCISES
+            ▣  {prog.name.toUpperCase()} — EXERCISES
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
             {prog.exercises.map((ex, i) => (
@@ -2863,7 +2870,7 @@ function GroupLogger({ programs, coachName, onCoachNameChange, onSaveGroup }) {
           border:"none", borderRadius:8, color:prog?"#FFF":T.muted,
           fontWeight:700, fontSize:13, cursor:prog?"pointer":"default", letterSpacing:"0.08em",
           boxShadow:prog?"0 2px 10px rgba(100,160,122,0.30)":"none",
-        }}>👥  Save Group Session</button>
+        }}>⬡  Save Group Session</button>
       </div>
     </div>
   );
@@ -2899,9 +2906,9 @@ function CoachTab({ scores, onScore, playerName, onNameChange, coachName, onCoac
                     borderBottom:`1px solid ${T.border}` }}>
         <div style={{ display:"flex", gap:6, paddingBottom:12 }}>
           {[
-            { id:"personal", icon:"👤", label:"Personal" },
-            { id:"group",    icon:"👥", label:"Group" },
-            { id:"programs", icon:"📋", label:"Programs" },
+            { id:"personal", icon:"○", label:"Personal" },
+            { id:"group",    icon:"⬡", label:"Group" },
+            { id:"programs", icon:"▣", label:"Programs" },
           ].map(m=>(
             <button key={m.id} onClick={()=>setMode(m.id)} style={{
               flex:1, padding:"8px 4px", borderRadius:7, cursor:"pointer",
@@ -2927,7 +2934,7 @@ function CoachTab({ scores, onScore, playerName, onNameChange, coachName, onCoac
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
               <div>
                 <div style={{ fontSize:8, color:T.muted, letterSpacing:"0.12em", marginBottom:6, fontWeight:700 }}>
-                  🧑‍🎓  STUDENT
+                  ○  STUDENT
                 </div>
                 <div style={{ display:"flex", alignItems:"center", gap:6 }}>
                   {(()=>{
@@ -2961,7 +2968,7 @@ function CoachTab({ scores, onScore, playerName, onNameChange, coachName, onCoac
               </div>
               <div>
                 <div style={{ fontSize:8, color:T.muted, letterSpacing:"0.12em", marginBottom:6, fontWeight:700 }}>
-                  🏅  COACH
+                  ◈  COACH
                 </div>
                 <div style={{ display:"flex", alignItems:"center", gap:6 }}>
                   {(()=>{
@@ -2998,7 +3005,7 @@ function CoachTab({ scores, onScore, playerName, onNameChange, coachName, onCoac
             {playerName && findLastSession(sessions||[], playerName) && (
               <div style={{ marginTop:8, padding:"6px 10px", borderRadius:6, background:T.goldFaint,
                 border:`1px solid ${T.borderGold}`, fontSize:9, color:T.gold, fontWeight:600, lineHeight:1.6 }}>
-                📋 ข้อมูลล่าสุด: {findLastSession(sessions, playerName).date}
+                ▣ ข้อมูลล่าสุด: {findLastSession(sessions, playerName).date}
                 {" · "}Mastery {findLastSession(sessions, playerName).mastery}%
                 {" · "}{findLastSession(sessions, playerName).passedSkills} skills ✓
               </div>
@@ -3080,7 +3087,7 @@ function CoachTab({ scores, onScore, playerName, onNameChange, coachName, onCoac
                   <>
                     <div style={{ padding:"9px 14px", borderRadius:8, background:stTrack.faint,
                       border:`1px solid ${stTrack.border}`, fontSize:11, color:T.sub, marginTop:8 }}>
-                      ให้คะแนน <b style={{ color:stTrack.color }}>🏋 STRENGTH</b> ≥ 6/10 ทุก skill
+                      ให้คะแนน <b style={{ color:stTrack.color }}>◆ STRENGTH</b> ≥ 6/10 ทุก skill
                     </div>
                     {stTrack.levels.map(lv=>(
                       <HSLevelCard key={`st_${lv.id}`} level={lv} scores={scores}
@@ -3106,7 +3113,7 @@ function CoachTab({ scores, onScore, playerName, onNameChange, coachName, onCoac
                   <>
                     <div style={{ padding:"9px 14px", borderRadius:8, background:fxTrack.faint,
                       border:`1px solid ${fxTrack.border}`, fontSize:11, color:T.sub, marginTop:8 }}>
-                      ให้คะแนน <b style={{ color:fxTrack.color }}>🌿 STRETCH</b> ≥ 6/10 ทุก skill
+                      ให้คะแนน <b style={{ color:fxTrack.color }}>≋ STRETCH</b> ≥ 6/10 ทุก skill
                     </div>
                     {fxTrack.levels.map(lv=>(
                       <HSLevelCard key={`fx_${lv.id}`} level={lv} scores={scores}
@@ -3218,7 +3225,7 @@ function HistoryTab({ sessions }) {
 
   if (sessions.length === 0) return (
     <div style={{ padding:32, textAlign:"center" }}>
-      <div style={{ fontSize:40, marginBottom:14 }}>📋</div>
+      <div style={{ fontSize:40, marginBottom:14 }}>▣</div>
       <div style={{ fontSize:14, fontWeight:700, color:T.sub, marginBottom:8 }}>ยังไม่มี Session</div>
       <div style={{ fontSize:12, color:T.muted, lineHeight:1.7 }}>
         ไปที่แท็บ <b style={{ color:T.gold }}>COACH</b> เพื่อให้คะแนน skills<br/>
@@ -3322,7 +3329,7 @@ function SessionList({ sessions }) {
                 border:`1px solid ${isGroup?T.borderGreen:T.borderGold}`,
                 display:"flex", alignItems:"center", justifyContent:"center",
                 fontWeight:800, fontSize:isGroup?14:11, color:isGroup?T.green:T.gold }}>
-                {isGroup ? "👥" : s.id}
+                {isGroup ? "⬡" : s.id}
               </div>
               <div style={{ flex:1 }}>
                 <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:4, flexWrap:"wrap" }}>
@@ -3352,7 +3359,7 @@ function SessionList({ sessions }) {
                 </div>
                 {s.coachName && (
                   <div style={{ fontSize:9, color:T.muted, marginBottom:3 }}>
-                    🏅 Coach: <b style={{ color:T.sub }}>{s.coachName}</b>
+                    ◈ Coach: <b style={{ color:T.sub }}>{s.coachName}</b>
                   </div>
                 )}
                 {s.note && (
@@ -3373,7 +3380,7 @@ function SessionList({ sessions }) {
                 {isGroup && (
                   <div>
                     <div style={{ fontSize:8, color:T.green, fontWeight:800, letterSpacing:"0.10em",
-                      marginBottom:8 }}>📋  {(s.programName||"").toUpperCase()} — EXERCISES</div>
+                      marginBottom:8 }}>▣  {(s.programName||"").toUpperCase()} — EXERCISES</div>
                     {(s.programSnapshot||[]).length === 0 && (
                       <div style={{ fontSize:10, color:T.muted, textAlign:"center", padding:"8px 0" }}>
                         ไม่มีข้อมูล exercises
@@ -3423,7 +3430,7 @@ function SessionList({ sessions }) {
                                     </span>
                                   )}
                                   {data?.photos?.length > 0 && (
-                                    <span style={{ fontSize:9, color:T.muted }}>📷{data.photos.length}</span>
+                                    <span style={{ fontSize:9, color:T.muted }}>▫{data.photos.length}</span>
                                   )}
                                   <span style={{ fontSize:11, fontWeight:800,
                                     color:passed?g.color:eff>0?T.sub:T.lockedTxt }}>
@@ -3462,7 +3469,7 @@ function SessionList({ sessions }) {
                                     </span>
                                   )}
                                   {data?.photos?.length > 0 && (
-                                    <span style={{ fontSize:9, color:T.muted }}>📷{data.photos.length}</span>
+                                    <span style={{ fontSize:9, color:T.muted }}>▫{data.photos.length}</span>
                                   )}
                                   <span style={{ fontSize:11, fontWeight:800,
                                     color:passed?T.gold:eff>0?T.sub:T.lockedTxt }}>
@@ -3520,7 +3527,7 @@ function SettingsTab({ headCoachMode, onHeadCoachMode, coaches, onCoaches, stude
     <div style={{ background:T.surfaceHi, borderRadius:10, padding:"14px 16px",
       border:`1px solid ${T.borderMd}`, marginBottom:10 }}>
       <div style={{ fontSize:10, fontWeight:700, color:T.sub, letterSpacing:"0.08em", marginBottom:10 }}>
-        {isCoach?"🏋️":"🧑"} {coaches.concat(students).some(x=>x.id===data.id)?"✎ EDIT":"➕ ADD"}{isCoach?" COACH":" STUDENT"}
+        {isCoach?"◆":"○"} {coaches.concat(students).some(x=>x.id===data.id)?"✎ EDIT":"➕ ADD"}{isCoach?" COACH":" STUDENT"}
       </div>
       {/* Avatar upload */}
       <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
@@ -3529,13 +3536,13 @@ function SettingsTab({ headCoachMode, onHeadCoachMode, coaches, onCoaches, stude
           display:"flex", alignItems:"center", justifyContent:"center" }}>
           {data.avatar
             ? <img src={data.avatar} alt="avatar" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
-            : <span style={{ fontSize:22 }}>{isCoach?"🏋️":"🧑"}</span>}
+            : <span style={{ fontSize:22 }}>{isCoach?"◆":"○"}</span>}
         </div>
         <div>
           <label style={{ display:"inline-block", padding:"6px 14px", borderRadius:7, cursor:"pointer",
             background:T.goldFaint, border:`1px solid ${T.borderGold}`, color:T.gold,
             fontSize:10, fontWeight:700, letterSpacing:"0.06em" }}>
-            📷 เลือกรูป
+            ▫ เลือกรูป
             <input type="file" accept="image/*" style={{ display:"none" }}
               onChange={e=>{
                 const file = e.target.files?.[0];
@@ -3592,7 +3599,7 @@ function SettingsTab({ headCoachMode, onHeadCoachMode, coaches, onCoaches, stude
           justifyContent:"center", fontSize:16, flexShrink:0, overflow:"hidden" }}>
           {person.avatar
             ? <img src={person.avatar} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
-            : (isCoach?"🏋️":"🧑")}
+            : (isCoach?"◆":"○")}
         </div>
         <div style={{ flex:1 }}>
           <div style={{ fontSize:13, fontWeight:700, color:T.text }}>{person.name}</div>
@@ -3615,9 +3622,9 @@ function SettingsTab({ headCoachMode, onHeadCoachMode, coaches, onCoaches, stude
       </div>
       <div style={{ display:"flex", flexWrap:"wrap", gap:"4px 12px", fontSize:10, color:T.muted }}>
         {person.email&&<span>✉ {person.email}</span>}
-        {person.tel&&<span>📞 {person.tel}</span>}
-        {person.ig&&<span>📸 @{(person.ig||"").replace(/^@/,"")}</span>}
-        {person.birthday&&<span>🎂 {person.birthday}</span>}
+        {person.tel&&<span>▸ {person.tel}</span>}
+        {person.ig&&<span>◇ @{(person.ig||"").replace(/^@/,"")}</span>}
+        {person.birthday&&<span>▪ {person.birthday}</span>}
       </div>
     </div>
   );
@@ -3653,8 +3660,8 @@ function SettingsTab({ headCoachMode, onHeadCoachMode, coaches, onCoaches, stude
       {/* SECTION TABS */}
       <div style={{ display:"flex", gap:8, marginBottom:14 }}>
         {[
-          { id:"coaches",  label:"🏋️  COACHES",  count:coaches.length },
-          { id:"students", label:"🧑  STUDENTS", count:students.length },
+          { id:"coaches",  label:"◆  COACHES",  count:coaches.length },
+          { id:"students", label:"○  STUDENTS", count:students.length },
         ].map(s=>(
           <button key={s.id} onClick={()=>setSection(s.id)} style={{
             flex:1, padding:"10px 0", borderRadius:8, cursor:"pointer",
@@ -3722,26 +3729,26 @@ function ShareModal({ scores, sessions, playerName, onClose }) {
 
   const handleShare = async () => {
     const statLine = STATS.map(s=>`${s.label}:${fs[s.id]}`).join(" ");
-    const text = `🤸 ${playerName} — Moventia Training System\n${title.en} · Mastery ${mastery}%\n${statLine}\nSessions: ${sessions.length}\n\n#Moventia #MovementTraining #FitnessTracker`;
+    const text = `${playerName} — Moventia Training System\n${title.en} · Mastery ${mastery}%\n${statLine}\nSessions: ${sessions.length}\n\n#Moventia #MovementTraining #HOYHON`;
     try {
       if (navigator.share) await navigator.share({ title:"Moventia Training System", text });
-      else { await navigator.clipboard.writeText(text); alert("คัดลอกแล้ว 📲"); }
+      else { await navigator.clipboard.writeText(text); alert("คัดลอกแล้ว ◈"); }
     } catch {}
   };
 
   return (
-    <div style={{ position:"fixed", inset:0, background:"rgba(30,26,23,0.60)", zIndex:1000,
+    <div style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.70)", zIndex:1000,
                   display:"flex", alignItems:"center", justifyContent:"center", padding:20,
-                  backdropFilter:"blur(4px)" }}>
+                  backdropFilter:"blur(6px)" }}>
       <div style={{ width:"100%", maxWidth:340 }}>
-        <div style={{ background:`linear-gradient(160deg,#FEFCF9 0%,#F5EEE6 100%)`,
+        <div style={{ background:`linear-gradient(160deg,#1A1A1E 0%,#121214 100%)`,
           border:`1.5px solid ${T.borderGold}`, borderRadius:14, padding:"24px 22px", marginBottom:12,
-          boxShadow:"0 8px 32px rgba(184,126,106,0.18), 0 2px 8px rgba(0,0,0,0.08)" }}>
+          boxShadow:"0 8px 32px rgba(0,0,0,0.40), 0 2px 8px rgba(207,163,120,0.10)" }}>
           <div style={{ textAlign:"center", fontSize:9, color:T.gold, letterSpacing:"0.22em", marginBottom:18, fontWeight:700 }}>
             MOVENTIA
           </div>
           <div style={{ textAlign:"center", marginBottom:18 }}>
-            <div style={{ fontSize:34, marginBottom:8 }}>🤸</div>
+            <div style={{ fontSize:28, marginBottom:8, color:T.gold }}>◈</div>
             <div style={{ fontSize:20, fontWeight:700, color:T.text }}>{playerName}</div>
             <div style={{ fontSize:11, color:T.gold, letterSpacing:"0.09em", marginTop:5, fontWeight:500 }}>
               {title.en} · {mastery}% Mastery
@@ -3787,7 +3794,7 @@ function ShareModal({ scores, sessions, playerName, onClose }) {
             background:`linear-gradient(135deg,${T.gold} 0%,${T.goldBright} 100%)`,
             border:"none", borderRadius:8, color:"#FFFFFF",
             fontWeight:700, fontSize:12, letterSpacing:"0.10em", cursor:"pointer",
-            boxShadow:"0 2px 10px rgba(184,126,106,0.35)" }}>📲  SHARE</button>
+            boxShadow:"0 2px 10px rgba(184,126,106,0.35)" }}>◈  SHARE</button>
           <button onClick={onClose} style={{ padding:"13px 18px", background:T.surface,
             border:`1px solid ${T.border}`, borderRadius:8, color:T.muted, fontSize:12, cursor:"pointer" }}>
             ✕
@@ -3806,7 +3813,7 @@ function SavedScreen({ type, mastery, passedSkills, programName }) {
   return (
     <div style={{ minHeight:"100vh", background:T.bg2, display:"flex", flexDirection:"column",
                   alignItems:"center", justifyContent:"center", gap:14 }}>
-      <div style={{ fontSize:56 }}>{isGroup ? "👥" : "✦"}</div>
+      <div style={{ fontSize:56 }}>{isGroup ? "⬡" : "✦"}</div>
       <div style={{ fontSize:22, fontWeight:800, color:T.text, letterSpacing:"0.04em" }}>
         {isGroup ? "Group Session Saved" : "Session Saved"}
       </div>
@@ -3908,17 +3915,17 @@ function App() {
   const mastery  = calcMastery(state.scores);
 
   const TABS = [
-    { id:"home",     label:"HOME",    emoji:"🏠" },
-    { id:"skills",   label:"SKILLS",  emoji:"📖" },
-    { id:"coach",    label:"COACH",   emoji:"🎯" },
-    { id:"history",  label:"HISTORY", emoji:"📊" },
-    { id:"settings", label:"REGIS",   emoji:"👥" },
+    { id:"home",     label:"HOME",    emoji:"◈" },
+    { id:"skills",   label:"SKILLS",  emoji:"◉" },
+    { id:"coach",    label:"COACH",   emoji:"⊕" },
+    { id:"history",  label:"HISTORY", emoji:"◎" },
+    { id:"settings", label:"REGIS",   emoji:"⚙" },
   ];
 
   return (
     <LangContext.Provider value={lang}>
     <div style={{ background:T.bg, minHeight:"100vh", color:T.text,
-                  fontFamily:"'SF Pro Display','-apple-system','Helvetica Neue',system-ui,sans-serif",
+                  fontFamily:"'Inter','SF Pro Display','-apple-system','Helvetica Neue',system-ui,sans-serif",
                   maxWidth:460, margin:"0 auto" }}>
 
       {/* HEADER */}
@@ -3943,7 +3950,7 @@ function App() {
             </button>
             <button onClick={()=>setShare(true)} style={{
               ...btnBase, padding:"7px 12px", fontSize:10, boxShadow:T.cardShadow }}>
-              📲 Share
+              ◈ Share
             </button>
           </div>
         </div>
@@ -3980,7 +3987,7 @@ function App() {
                   border:`1.5px solid ${T.borderGold}` }}>
                   <img src={stu.avatar} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
                 </div>
-              ) : <span style={{ fontSize:12 }}>🧑</span>}
+              ) : <span style={{ fontSize:12 }}>○</span>}
               <span style={{ fontSize:10, fontWeight:700, color:T.gold, flex:1 }}>
                 กำลังดู: {selectedStudent}
               </span>
