@@ -1,10 +1,12 @@
-const CACHE = "moventia-v1";
+const CACHE = "moventia-v2-dark";
 const ASSETS = [
   "./index.html",
   "https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js",
   "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/recharts/2.15.3/Recharts.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js",
+  "https://unpkg.com/recharts@2.15.3/umd/Recharts.js",
   "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.9/babel.min.js",
+  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
 ];
 
 self.addEventListener("install", e => {
