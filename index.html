@@ -4836,8 +4836,17 @@ function App() {
   const [showUserMgmt, setShowUserMgmt] = useState(false);
 
   const handleLoginSuccess = useCallback((user, role) => {
-    setAuthSession_(getAuthSession());
-    setShowLoginScreen(false);
+    // Read auth directly from localStorage to avoid race condition
+    const session = getAuthSession();
+    if (session) {
+      setAuthSession_(session);
+      setShowLoginScreen(false);
+    } else {
+      // Fallback: construct session from user object
+      const fallback = { userId: user.id, username: user.username, role: user.role, loginTime: Date.now(), lastActive: Date.now() };
+      setAuthSession_(fallback);
+      setShowLoginScreen(false);
+    }
   }, []);
 
   const handleLogout = useCallback(() => {
@@ -4855,31 +4864,7 @@ function App() {
     }
   }, [authSession]);
 
-  // Show LoginScreen if not authenticated
-  if (!authSession) {
-    if (showSetupWizard) {
-      return (
-        <LangContext.Provider value="en">
-          <SetupWizard
-            onSetupComplete={(user, role) => {
-              setAuthSession_(getAuthSession());
-              setShowSetupWizard(false);
-            }}
-          />
-        </LangContext.Provider>
-      );
-    }
-
-    return (
-      <LangContext.Provider value="en">
-        <LoginScreen
-          onLoginSuccess={handleLoginSuccess}
-          onShowSetup={() => setShowSetupWizard(true)}
-        />
-      </LangContext.Provider>
-    );
-  }
-
+  // ALL hooks must be declared before any conditional return (React rules of hooks)
   const [state, setState]   = useState(load);
   const [tab, setTab]       = useState("home");
   const [showShare, setShare] = useState(false);
@@ -4895,10 +4880,9 @@ function App() {
     setState(p => ({ ...p, playerName: name || p.playerName }));
   }, []);
 
-  useEffect(() => { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }, [state]);
+  useEffect(() => { if (authSession) localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }, [state, authSession]);
 
   const setScore = useCallback((skillId, val) => {
-    // val may be a full object {score, lastTested, sets, ...} or legacy number
     setState(p => ({ ...p, scores:{ ...p.scores, [skillId]:val } }));
   }, []);
 
@@ -4912,7 +4896,6 @@ function App() {
       coachName: coachName || "",
       mastery, passedSkills, scoreSnapshot: { ...snap },
     };
-    // Save session and RESET scores so coach is ready for next student
     setState(p => ({ ...p, sessions: [...p.sessions, newSession], scores: {} }));
     setSavedSnap({ type:"personal", mastery, passedSkills });
     setTimeout(() => { setSavedSnap(null); setTab("home"); }, 2400);
@@ -4930,13 +4913,6 @@ function App() {
     setTimeout(() => { setSavedSnap(null); setTab("history"); }, 1800);
   }, [state.sessions.length]);
 
-  if (savedSnap) return <SavedScreen type={savedSnap.type} mastery={savedSnap.mastery}
-    passedSkills={savedSnap.passedSkills} programName={savedSnap.programName}/>;
-
-  const title    = getTitle(state.scores);
-  const unlocked = calcUnlockedHS(state.scores);
-  const mastery  = calcMastery(state.scores);
-
   // Update last active time on any interaction
   useEffect(() => {
     const handleActivity = () => updateLastActive();
@@ -4948,11 +4924,53 @@ function App() {
     };
   }, []);
 
+  // Compute derived state (safe even when not logged in)
+  const title    = authSession ? getTitle(state.scores) : { en:"Guest", th:"Guest" };
+  const unlocked = authSession ? calcUnlockedHS(state.scores) : 0;
+  const mastery  = authSession ? calcMastery(state.scores) : 0;
+
   // Filter tabs based on role
   let TABS = [
     { id:"home",     label:"HOME",    emoji:"◈" },
     { id:"skills",   label:"SKILLS",  emoji:"◉" },
   ];
+
+  // === CONDITIONAL RENDERING (no early returns — all hooks already called) ===
+
+  // Show SetupWizard if first time
+  if (!authSession && showSetupWizard) {
+    return (
+      <LangContext.Provider value={lang}>
+        <SetupWizard
+          onSetupComplete={(user, role) => {
+            const session = getAuthSession();
+            if (session) {
+              setAuthSession_(session);
+            } else {
+              setAuthSession_({ userId: user.id, username: user.username, role: role || 'owner', loginTime: Date.now(), lastActive: Date.now() });
+            }
+            setShowSetupWizard(false);
+          }}
+        />
+      </LangContext.Provider>
+    );
+  }
+
+  // Show LoginScreen if not authenticated
+  if (!authSession) {
+    return (
+      <LangContext.Provider value={lang}>
+        <LoginScreen
+          onLoginSuccess={handleLoginSuccess}
+          onShowSetup={() => setShowSetupWizard(true)}
+        />
+      </LangContext.Provider>
+    );
+  }
+
+  // Show saved session screen
+  if (savedSnap) return <SavedScreen type={savedSnap.type} mastery={savedSnap.mastery}
+    passedSkills={savedSnap.passedSkills} programName={savedSnap.programName}/>;
 
   if (authSession.role === 'owner') {
     TABS.push(
