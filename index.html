@@ -232,23 +232,6 @@ const BASIC_GROUPS = [
       { id:"fit_wall_sit",  name:"Wall Sit 30s",             thai:"นั่งเอียง 30 วิ",     desc:"หลังชิดกำแพง ขา 90° ค้าง 30 วิ",       stats:{ str:0.50, crd:0.35, int:0.15 } },
     ],
   },
-  {
-    id:"str_mob", icon:"≋", name:"STRETCH & MOBILITY", thai:"ความยืดหยุ่นและข้อต่อ", passScore:6,
-    color:T.green, faintColor:T.greenFaint, borderColor:T.borderGreen,
-    note:"ยืดกล้ามเนื้อและข้อต่อที่จำเป็นสำหรับทุกคน — ฝึกสม่ำเสมอลดการบาดเจ็บ",
-    skills:[
-      { id:"mob_wrist",      name:"Wrist Prep & Stretch",    thai:"เตรียมข้อมือ",         desc:"ยืด+เสริม ทุกทิศทาง 10 นาที",        stats:{ rec:0.65, int:0.35 } },
-      { id:"mob_shoulder",   name:"Shoulder Overhead",       thai:"ยืดไหล่",              desc:"แขนตึงขึ้นเพดาน ค้าง 20 วิ",          stats:{ flx:0.55, rec:0.45 } },
-      { id:"mob_chest",      name:"Chest Opener",            thai:"ยืดหน้าอก",            desc:"มือประสานหลัง เปิดอก 20 วิ",          stats:{ flx:0.50, rec:0.50 } },
-      { id:"mob_pike",       name:"Pike Stretch",            thai:"ยืดสะโพก–น่อง",       desc:"งอตัวมือแตะข้อเท้า 30 วิ",          stats:{ flx:0.65, rec:0.35 } },
-      { id:"mob_diamond",    name:"Diamond Stretch",         thai:"ยืดขาท่าเพชร",         desc:"แบะขา กดเข่าลงพื้น 30 วิ",           stats:{ flx:0.70, rec:0.30 } },
-      { id:"mob_front_split",name:"Front Split Prep",        thai:"ยืดสปลิทหน้า",         desc:"กางขาหน้า-หลัง เอวตั้ง 30 วิ",      stats:{ flx:0.70, rec:0.30 } },
-      { id:"mob_middle",     name:"Middle Split",            thai:"แยกขาสองข้าง",         desc:"กางขาสองข้าง กดลงช้าๆ 30 วิ",       stats:{ flx:0.75, rec:0.25 } },
-      { id:"mob_bridge",     name:"Bridge Warm-up",          thai:"บริดจ์เตรียม",          desc:"ยกหลัง สะพาน ค้าง 15 วิ×3",         stats:{ flx:0.50, str:0.35, rec:0.15 } },
-      { id:"mob_side",       name:"Side Split",              thai:"สปลิทข้าง",             desc:"แยกขาด้านข้างเต็ม ค้าง 30 วิ",     stats:{ flx:0.80, rec:0.20 } },
-      { id:"mob_hip_circle", name:"Hip Circles",             thai:"วงกลมสะโพก",           desc:"วงกลมสะโพก 10 ครั้ง ตามเข็ม",          stats:{ rec:0.55, agi:0.30, int:0.15 } },
-    ],
-  },
 ];
 
 /* ═══════════════════════════════════════════════════════
@@ -840,21 +823,24 @@ const STR_LEVELS = [
 ═══════════════════════════════════════════════════════ */
 const FLEX_LEVELS = [
   {
-    id:1, icon:"Ⅰ", name:"BASIC MOBILITY", thai:"พื้นฐาน", passScore:6,
-    note:"ยืดน่อง, สะโพก, ไหล่ — ความยืดหยุ่นพื้นฐาน",
-    focus:"Hamstring, hip flexor, overhead shoulder, pike, wrist",
+    id:1, icon:"Ⅰ", name:"BASIC MOBILITY", thai:"พื้นฐาน + Warm-up", passScore:6,
+    note:"ยืดกล้ามเนื้อและข้อต่อพื้นฐาน — ฝึกสม่ำเสมอลดการบาดเจ็บ ใช้เป็น warm-up ก่อนฝึกทุกครั้ง",
+    focus:"Wrist prep, shoulder, hamstring, hip flexor, pike, calf, quad, glute, thoracic",
     skills:[
+      { id:"fx_wrist",        name:"Wrist Prep & Stretch",   thai:"เตรียมข้อมือ",         desc:"ยืด+เสริม ทุกทิศทาง 10 นาที",        stats:{ rec:0.65, int:0.35 } },
+      { id:"fx_overhead",     name:"Shoulder Overhead",      thai:"ยืดไหล่เหนือหัว",     desc:"แขนตึงขึ้นเพดาน ค้าง 20 วิ",          stats:{ flx:0.55, rec:0.45 } },
+      { id:"fx_chest",        name:"Chest Opener",           thai:"ยืดหน้าอก",            desc:"มือประสานหลัง เปิดอก 20 วิ",          stats:{ flx:0.50, rec:0.50 } },
       { id:"fx_hamstring",    name:"Hamstring Stretch",      thai:"ยืดน่อง+ต้นขาหลัง",   desc:"ยืนงอตัว มือถึงข้อเท้า",               stats:{ flx:0.60, rec:0.40 } },
       { id:"fx_hip_flex",     name:"Hip Flexor Stretch",     thai:"ยืดสะโพกหน้า",        desc:"ท่าวิ่งลึก ค้าง 30 วิ",                stats:{ flx:0.55, rec:0.45 } },
-      { id:"fx_overhead",     name:"Overhead Shoulder",      thai:"ยืดไหล่เหนือหัว",     desc:"แขนชิดหู ค้าง 20 วิ",                 stats:{ flx:0.55, rec:0.45 } },
       { id:"fx_pike",         name:"Pike Sit",               thai:"Pike Stretch",        desc:"นั่งเหยียดขา งอตัว มือถึงเท้า",      stats:{ flx:0.65, rec:0.35 } },
-      { id:"fx_wrist",        name:"Wrist Flexibility",      thai:"ยืดข้อมือ",           desc:"กดพื้นค้าง 15 วิ ทุกทิศ",             stats:{ flx:0.50, rec:0.50 } },
-      { id:"fx_calf_str",     name:"Calf Stretch",           thai:"ยืดน่อง",             desc:"ยืดแรงน่องอย่าง 2 ท่า",               stats:{ flx:0.55, rec:0.45 } },
-      { id:"fx_quad_str",     name:"Quad Stretch",           thai:"ยืดเข่า",             desc:"จับเท้าดึงขึ้น ค้าง 20 วิ",            stats:{ flx:0.60, rec:0.40 } },
+      { id:"fx_diamond",      name:"Diamond Stretch",        thai:"ยืดขาท่าเพชร",         desc:"แบะขา กดเข่าลงพื้น 30 วิ",           stats:{ flx:0.70, rec:0.30 } },
+      { id:"fx_calf_str",     name:"Calf Stretch",           thai:"ยืดน่อง",             desc:"ยืดแรงน่อง 2 ท่า ค้าง 20 วิ",        stats:{ flx:0.55, rec:0.45 } },
+      { id:"fx_quad_str",     name:"Quad Stretch",           thai:"ยืดต้นขาหน้า",        desc:"จับเท้าดึงขึ้น ค้าง 20 วิ",            stats:{ flx:0.60, rec:0.40 } },
       { id:"fx_glute_str",    name:"Glute Stretch",          thai:"ยืดสะโพก",            desc:"ท่า Pigeon นั่ง ค้าง 20 วิ",          stats:{ flx:0.55, rec:0.45 } },
       { id:"fx_lat_str",      name:"Lat Stretch",            thai:"ยืดข้างลำตัว",         desc:"โค้งข้าง ยืด latissimus 20 วิ",      stats:{ flx:0.50, rec:0.50 } },
       { id:"fx_thoracic",     name:"Thoracic Rotation",      thai:"หมุน Thoracic",        desc:"หมุนลำตัว ×5 ตามเข็ม",               stats:{ flx:0.45, rec:0.55 } },
-      { id:"fx_neck_mob",     name:"Neck Mobility",          thai:"เคลื่อนคอ",            desc:"หมุนคอ ×10 ไปมา",                    stats:{ rec:0.65, int:0.35 } },
+      { id:"fx_hip_circle",   name:"Hip Circles",            thai:"วงกลมสะโพก",           desc:"วงกลมสะโพก 10 ครั้ง ตามเข็ม",          stats:{ rec:0.55, agi:0.30, int:0.15 } },
+      { id:"fx_bridge_warm",  name:"Bridge Warm-up",         thai:"บริดจ์เตรียม",          desc:"ยกหลัง สะพาน ค้าง 15 วิ×3",         stats:{ flx:0.50, str:0.35, rec:0.15 } },
     ],
   },
   {
